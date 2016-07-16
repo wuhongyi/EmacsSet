@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: wuroottfile
+# --
+TFile *${1:Name} = new TFile(${2:FileName},${3:"RECREATE"});//"RECREATE" "READ"
+$0
+// TObject->Write();
+${1:$(yas/substr text "[^: ]*")}->Close();

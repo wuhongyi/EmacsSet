@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: wuroottcanvas
+# --
+TCanvas *${1:Name} = new TCanvas("${1:$(yas/substr text "[^: ]*")}","",${2:wx},${3:wy});
+// gStyle->SetOptStat(0);
+// ${1:$(yas/substr text "[^: ]*")}->ToggleEventStatus();//底端信息栏
+// ${1:$(yas/substr text "[^: ]*")}->ToggleEditor();
+// ${1:$(yas/substr text "[^: ]*")}->ToggleToolBar();
+$0

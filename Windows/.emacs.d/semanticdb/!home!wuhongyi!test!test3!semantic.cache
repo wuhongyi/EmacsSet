@@ -1,0 +1,23 @@
+;; Object test3/
+;; SEMANTICDB Tags save file
+(semanticdb-project-database-file "test3/"
+  :tables (list 
+   (semanticdb-table "main.C"
+    :major-mode 'c++-mode
+    :tags 
+        '( ("iostream" include (:system-flag t) nil [1 19])
+            ("std" using (:type ("std" type
+                 (:prototype t
+                  :type "namespace")
+                  nil nil)) nil [20 40]))          
+    :file "main.C"
+    :pointmax 42
+    :fsize 41
+    :lastmodtime '(21107 26888 415972 844000)
+    :unmatched-syntax 'nil
+    )
+   )
+  :file "!home!wuhongyi!test!test3!semantic.cache"
+  :semantic-tag-version "2.0"
+  :semanticdb-version "2.2"
+  )

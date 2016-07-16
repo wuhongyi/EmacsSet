@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# name: wucppreadtxt
+# --
+ifstream ${1:Name};//fstream
+${1:$(yas/substr text "[^: ]*")}.open(${2:FileName});
+if(${1:$(yas/substr text "[^: ]*")}.fail())
+{
+  cout<<"can't open file."<<endl;
+}
+while(!${1:$(yas/substr text "[^: ]*")}.eof())
+{
+  ${1:$(yas/substr text "[^: ]*")}>>${3:ParName};
+  if(${1:$(yas/substr text "[^: ]*")}.eof()) break;//避免最后一个重复读取
+  $0
+}
+${1:$(yas/substr text "[^: ]*")}.close();
