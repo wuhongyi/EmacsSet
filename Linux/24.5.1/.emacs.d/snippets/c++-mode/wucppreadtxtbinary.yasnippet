@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# name: wucppreadtxtbinary
+# --
+std::ifstream ${1:Name};//fstream
+${1:$(yas/substr text "[^: ]*")}.open(${2:FileName},std::ios::binary);
+if(${1:$(yas/substr text "[^: ]*")}.fail())
+{
+  std::cout<<"can't open file."<<std::endl;
+}
+
+${1:$(yas/substr text "[^: ]*")}.read((char*)&${3:ParName},sizeof(${4:int}));// 数组 ${3:$(yas/substr text "[^: ]*")}[0]
+
+$0
+
+${1:$(yas/substr text "[^: ]*")}.close();

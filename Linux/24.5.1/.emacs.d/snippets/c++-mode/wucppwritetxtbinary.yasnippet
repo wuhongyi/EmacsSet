@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: wucppwritetxtbinary
+# --
+std::ofstream ${1:Name};//fstream
+${1:$(yas/substr text "[^: ]*")}.open(${2:FileName},std::ios::binary);//ios::bin ios::app
+if(${1:$(yas/substr text "[^: ]*")}.fail())
+{
+  std::cout<<"can't open file."<<std::endl;
+}
+${1:$(yas/substr text "[^: ]*")}.write((char*)&${3:ParName},sizeof(${4:int}));// 数组 ${3:$(yas/substr text "[^: ]*")}[0]
+$0
+${1:$(yas/substr text "[^: ]*")}.close();
