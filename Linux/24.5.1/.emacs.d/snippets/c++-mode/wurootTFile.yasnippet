@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: wuroottfile
+# name: wurootTFile
 # --
 TFile *${1:Name} = new TFile(${2:FileName},${3:"RECREATE"});//"RECREATE" "READ"
 if(!${1:$(yas/substr text "[^: ]*")}->IsOpen())

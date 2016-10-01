@@ -177,7 +177,7 @@
  /home/wuhongyi/CodeProject/inc/wu_CLHEP
  /home/wuhongyi/CodeProject/G4_inc
  /home/wuhongyi/CodeProject/ROOT_inc
- /opt/Geant4/geant41002p01/include/Geant4
+ /opt/Geant4/geant41003b01/include/Geant4
     "))) 
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
