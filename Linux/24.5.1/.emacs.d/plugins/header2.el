@@ -686,7 +686,7 @@ This is normally overwritten with each file save."
 ;;设置个人URL地址
 (defsubst header-url ()
   "Insert \"URL: \" line."
-  (insert header-prefix-string "URL: http://wuhongyi.github.io \n"))
+  (insert header-prefix-string "URL: http://wuhongyi.cn \n"))
 
 (defsubst header-doc-url ()
   "Insert \"Doc URL: \" line."

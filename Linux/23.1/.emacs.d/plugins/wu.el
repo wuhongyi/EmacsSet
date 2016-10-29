@@ -7,7 +7,7 @@
 ;; Last-Updated: 二 4月  7 09:37:28 2015 (+0800)
 ;;           By: Hongyi Wu(吴鸿毅)
 ;;     Update #: 43
-;; URL: http://wuhongyi.github.io 
+;; URL: http://wuhongyi.cn 
 
 
 ;; latex-mode
