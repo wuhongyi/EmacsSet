@@ -4,9 +4,9 @@
 ;; Author: Hongyi Wu(吴鸿毅)
 ;; Email: wuhongyi@qq.com 
 ;; Created: 二 12月  9 13:37:24 2014 (+0800)
-;; Last-Updated: 一 3月 21 21:03:21 2016 (+0800)
+;; Last-Updated: 日 5月  7 19:49:34 2017 (+0800)
 ;;           By: Hongyi Wu(吴鸿毅)
-;;     Update #: 124
+;;     Update #: 127
 ;; URL: http://wuhongyi.cn 
 
 
@@ -161,6 +161,12 @@ ecb-version-check nil;
 (winner-mode 1)
 (global-set-key (kbd "C-x 4 u") 'winner-undo)
 (global-set-key (kbd "C-x 4 r") 'winner-redo)
+
+
+;;cmake;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(add-to-list 'load-path "~/.emacs.d/plugins")
+(load-file "~/.emacs.d/plugins/cmake-mode.el")
+(require 'cmake-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

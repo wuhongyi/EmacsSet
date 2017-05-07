@@ -93,7 +93,7 @@
 (add-hook 'fortran-mode-hook 'hs-minor-mode)
 (add-hook 'f90-mode-hook 'hs-minor-mode)
 (add-hook 'markdown-mode-hook 'hs-minor-mode)
-
+(add-hook 'cmake-mode-hook 'hs-minor-mode)
 
 ;;color
 (add-to-list 'load-path "~/.emacs.d/plugins")
@@ -172,12 +172,12 @@
  /usr/local/include
  /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include-fixed
  /usr/include
- /opt/root60602/include
+ /opt/root60806/include
  /home/wuhongyi/CodeProject/inc
  /home/wuhongyi/CodeProject/inc/wu_CLHEP
  /home/wuhongyi/CodeProject/G4_inc
  /home/wuhongyi/CodeProject/ROOT_inc
- /opt/Geant4/geant41003b01/include/Geant4
+ /opt/Geant4/geant41003p01/include/Geant4
     "))) 
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
@@ -225,6 +225,7 @@
 (add-hook 'f90-mode-hook 'auto-make-header)
 (add-hook 'python-mode-hook 'auto-make-header)
 (add-hook 'Markdown-mode-hook 'auto-make-header)
+(add-hook 'cmake-mode-hook 'auto-make-header)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  
 ;;set matlab-emacs environment   
@@ -319,6 +320,12 @@
 (setq auto-mode-alist
 (cons '(".ejs" . markdown-mode) auto-mode-alist))
 
+
+
+(setq auto-mode-alist
+(cons '(".mqh" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".mq5" . c++-mode) auto-mode-alist))
 
 
 ;;为了加快启动速度，配置放在以下文件夹
