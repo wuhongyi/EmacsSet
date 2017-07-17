@@ -143,6 +143,7 @@
 (add-hook 'f90-mode-hook 'hs-minor-mode)
 (add-hook 'markdown-mode-hook 'hs-minor-mode)
 (add-hook 'cmake-mode-hook 'hs-minor-mode)
+(add-hook 'vhdl-mode-hook 'hs-minor-mode)
 
 ;;color
 (add-to-list 'load-path "~/.emacs.d/plugins")
@@ -229,6 +230,7 @@
 (add-hook 'python-mode-hook 'auto-make-header)
 (add-hook 'Markdown-mode-hook 'auto-make-header)
 (add-hook 'cmake-mode-hook 'auto-make-header)
+(add-hook 'vhdl-mode-hook 'auto-make-header)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  
 ;;set matlab-emacs environment   
