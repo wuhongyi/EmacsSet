@@ -35,6 +35,9 @@
 // std::cout<<"BaseName:"<<gSystem->BaseName("aaa/bbb/ccc/TSystem.cc")<<std::endl;//TSystem.cc
 // gSystem->Rename("123","456");//文件、文件夹重命名
 // gSystem->CopyFile("source.root", "copy.root");
+// gSystem->AccessPathName("main.cc",kFileExists) //判断文件是否存在 false存在;true不存在
+// gSystem->AccessPathName("/tmp/",kWritePermission) //判断文件夹是否可写
+// gSystem->AccessPathName("/etc/krb5.conf", kReadPermission)//判断文件是否可读
 
 // Long_t id, size,flags,modtime;
 // gSystem->GetPathInfo("ROOTSYS",&id,&size,&flags,&modtime);
