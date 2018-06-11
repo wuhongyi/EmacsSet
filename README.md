@@ -1,6 +1,8 @@
 # EmacsSet
 Hongyi Wu(吴鸿毅) emacs setting
 
+**当前最新版本 26.1**
+
 ## emacs 25.2
 
 **Linux**
