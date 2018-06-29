@@ -207,12 +207,19 @@
 (global-linum-mode t)  
 
 ;;模板调用
+;; (add-to-list 'load-path "~/.emacs.d/plugins") 
+;; (require 'yasnippet-bundle) 
+;; (setq yas/root-directory "~/.emacs.d/snippets")
+;; (yas/load-directory yas/root-directory)
 (add-to-list 'load-path "~/.emacs.d/plugins") 
-(require 'yasnippet-bundle) 
-(setq yas/root-directory "~/.emacs.d/snippets")
-(yas/load-directory yas/root-directory)
+(require 'yasnippet)
+;;(yas-global-mode 1)
+;; (setq yas/root-directory "~/.emacs.d/snippets")
+;; (yas/load-directory yas/root-directory)
+;(yas-reload-all)
+;(add-hook 'vhdl-mode-hook 'yas-minor-mode)
+;(add-hook 'c++-mode-hook 'yas-minor-mode)
 
- 
 (add-to-list 'load-path "~/.emacs.d/plugins")
 ;;加载header2.el文件,自动添加文件头
 (require 'header2)
