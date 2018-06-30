@@ -22,56 +22,18 @@
 (setq frame-title-format "%b - Hongyi Wu @ Peking University")
 
 
-
-;;自动补全
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;markdown-mode
 (add-to-list 'load-path "~/.emacs.d/plugins")
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/plugins/ac-dict")
-(ac-config-default)
-;; ac-clang-flags是头文件的目录，根据系统的不同可能你的头文件目录也会不同，列出系统中所有的头文件目录方法是：
-;; $ echo "" | g++ -v -x c++ -E -  
-(add-to-list 'load-path "~/.emacs.d/plugins")
-(require 'auto-complete-clang) 
-;; (setq ac-clang-auto-save t) 
-(setq ac-auto-start t);;nil  t
-(setq ac-quick-help-delay 0.5);;默认0.5
-(ac-set-trigger-key "TAB")
-;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
-(define-key ac-mode-map  [(control tab)] 'auto-complete)
-(defun my-ac-config ()
-  (setq ac-clang-flags  
-	(mapcar(lambda (item)(concat "-I" item))  
-	       (split-string  
-		"  
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../include/c++/4.9.2
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../include/c++/4.9.2/x86_64-unknown-linux-gnu
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/../../../../include/c++/4.9.2/backward
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include
- /usr/local/include
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.2/include-fixed
- /usr/include
- /opt/root60806/include
- /home/wuhongyi/CodeProject/inc
- /home/wuhongyi/CodeProject/inc/wu_CLHEP
- /home/wuhongyi/CodeProject/G4_inc
- /home/wuhongyi/CodeProject/ROOT_inc
- /opt/Geant4/geant41003p01/include/Geant4
-    "))) 
-  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
-  (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
-  ;;(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
-  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
-  (add-hook 'css-mode-hook 'ac-css-mode-setup)
-  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-  (global-auto-complete-mode t))
-(defun my-ac-cc-mode-setup ()
-  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
-(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
-;; ac-source-gtags
-(my-ac-config)
+(autoload 'markdown-mode "markdown-mode.el"
+"Major mode for editing Markdown files" t)
+(setq auto-mode-alist
+(cons '(".markdown" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".md" . markdown-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".ejs" . markdown-mode) auto-mode-alist))
 
-
-;;------------------------------------------------------------------------------
 
 
 ;; For my language code setting (UTF-8)
@@ -144,6 +106,9 @@
 (add-hook 'markdown-mode-hook 'hs-minor-mode)
 (add-hook 'cmake-mode-hook 'hs-minor-mode)
 (add-hook 'vhdl-mode-hook 'hs-minor-mode)
+(add-hook 'verilog-mode-hook 'hs-minor-mode)
+
+
 
 ;;color
 (add-to-list 'load-path "~/.emacs.d/plugins")
@@ -195,8 +160,6 @@
  )
 
 
-
-
 ;;显示行数
 (add-to-list 'load-path "~/.emacs.d/plugins")
 (require 'linum)    
@@ -206,19 +169,69 @@
 ;;; run M-x global-linum-mode    
 (global-linum-mode t)  
 
+
+
+
+;;自动补全
+(add-to-list 'load-path "~/.emacs.d/plugins")
+(require 'auto-complete)
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/plugins/ac-dict")
+(ac-config-default)
+;; ac-clang-flags是头文件的目录，根据系统的不同可能你的头文件目录也会不同，列出系统中所有的头文件目录方法是：
+;; $ echo "" | g++ -v -x c++ -E -  
+(add-to-list 'load-path "~/.emacs.d/plugins")
+(require 'auto-complete-clang) 
+;; (setq ac-clang-auto-save t) 
+(setq ac-auto-start t);;nil  t
+(setq ac-quick-help-delay 0.5);;默认0.5
+(ac-set-trigger-key "TAB")
+;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
+(defun my-ac-config ()
+  (setq ac-clang-flags  
+	(mapcar(lambda (item)(concat "-I" item))  
+	       (split-string  
+		"  
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/x86_64-unknown-linux-gnu
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/backward
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include-fixed
+ /usr/include
+ /opt/root60806/include
+ /home/wuhongyi/CodeProject/inc
+ /home/wuhongyi/CodeProject/inc/wu_CLHEP
+ /home/wuhongyi/CodeProject/G4_inc
+ /home/wuhongyi/CodeProject/ROOT_inc
+ /opt/Geant4/geant41003p01/include/Geant4
+    "))) 
+  (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
+  (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+  ;;(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
+  (add-hook 'ruby-mode-hook 'ac-ruby-mode-setup)
+  (add-hook 'css-mode-hook 'ac-css-mode-setup)
+  (add-hook 'auto-complete-mode-hook 'ac-common-setup)
+  (global-auto-complete-mode t))
+(defun my-ac-cc-mode-setup ()
+  (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
+(add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
+;; ac-source-gtags
+(my-ac-config)
+
+;;------------------------------------------------------------------------------
+
 ;;模板调用
-;; (add-to-list 'load-path "~/.emacs.d/plugins") 
-;; (require 'yasnippet-bundle) 
-;; (setq yas/root-directory "~/.emacs.d/snippets")
-;; (yas/load-directory yas/root-directory)
 (add-to-list 'load-path "~/.emacs.d/plugins") 
 (require 'yasnippet)
-;;(yas-global-mode 1)
-;; (setq yas/root-directory "~/.emacs.d/snippets")
-;; (yas/load-directory yas/root-directory)
-;(yas-reload-all)
-;(add-hook 'vhdl-mode-hook 'yas-minor-mode)
+(yas/load-directory "~/.emacs.d/snippets")
+(yas-global-mode 1)
+;; (yas-reload-all)
+;; (add-hook 'vhdl-mode-hook 'yas-minor-mode)
 ;(add-hook 'c++-mode-hook 'yas-minor-mode)
+;; (add-hook 'verilog-mode-hook 'yas-minor-mode)
+
+
 
 (add-to-list 'load-path "~/.emacs.d/plugins")
 ;;加载header2.el文件,自动添加文件头
@@ -238,6 +251,9 @@
 (add-hook 'Markdown-mode-hook 'auto-make-header)
 (add-hook 'cmake-mode-hook 'auto-make-header)
 (add-hook 'vhdl-mode-hook 'auto-make-header)
+(add-hook 'verilog-mode-hook 'auto-make-header)
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  
 ;;set matlab-emacs environment   
@@ -321,20 +337,6 @@
 ;; There is support for viewing an generated image with C-c p.
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;markdown-mode
-(add-to-list 'load-path "~/.emacs.d/plugins")
-(autoload 'markdown-mode "markdown-mode.el"
-"Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-(cons '(".markdown" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist
-(cons '(".md" . markdown-mode) auto-mode-alist))
-(setq auto-mode-alist
-(cons '(".ejs" . markdown-mode) auto-mode-alist))
-
-
-
 (setq auto-mode-alist
 (cons '(".mqh" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist
@@ -343,3 +345,12 @@
 
 ;;为了加快启动速度，配置放在以下文件夹
 (load "wu.el")
+
+
+;; VERSION
+;; https://github.com/auto-complete
+;;20180629 UPDATE yasnippet.el  0.6.1c -> 0.13.0
+;;20180630 UPDATE auto-complete.el 1.3.1 -> 1.5.1
+;;20180630 UPDATE fuzzy.el -> 0.2
+;;20180630 UPDATE popup.el 0.4 -> 0.5.3
+;;20180630 修改 auto-complete-config.el 扩展自动补全

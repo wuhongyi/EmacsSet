@@ -93,9 +93,3 @@ $ ./configure --prefix=/usr
 $ make -j4
 make install
 ```
-
-----
-
-## VERSION
-
-20180629 UPDATE yasnippet.el  0.6.1c -> 0.13.0
