@@ -1,5 +1,20 @@
 ;; .emacs
 
+;; VERSION
+;; https://github.com/auto-complete
+;; https://jblevins.org/projects/markdown-mode/
+;;20180629 yasnippet.el 没有旧版 yasnippet-bundle.el 好
+;;20180630 UPDATE auto-complete.el 1.3.1 -> 1.5.1
+;;20180630 UPDATE fuzzy.el -> 0.2
+;;20180630 UPDATE popup.el 0.4 -> 0.5.3
+;;20180630 修改 auto-complete-config.el 扩展自动补全/yasnippet.el   yasnippet-bundle.el不需要修改
+;;20180701 UPDATE header2.el 2014 - 2018
+;;20180701 修改 header2.el 支持外部设置邮箱、网址
+;;20180701 UPDATE markdown-mode.el 2.0 -> 2.3
+;;20180701 UPDATE color-theme.el 6.5.4 -> 6.6.0
+
+;;------------------------------------------------------------------------------
+
 ;;F1 显示/隐藏工具栏 C-F1 显示/隐藏菜单栏
 ;;F2 gdb
 ;;F3 代码转跳  C-F3 不提示跳回
@@ -12,19 +27,44 @@
 ;;F12 onekey-save
 
 
-;; 需要修改 .emacs.d/plugins/header2.el 文件， 第425行为个人网址，如果没有则给注释掉，如果有则修改689行为自己的网址。
-
-
-;;设置个人信息
-(setq user-full-name "Hongyi Wu(吴鸿毅)")
-(setq user-mail-address "wuhongyi@qq.com")
-;; default to better frame titles
-(setq frame-title-format "%b - Hongyi Wu @ Peking University")
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;markdown-mode
+;;    设置个人信息      -----用户需要修改-----
+(setq user-full-name "Hongyi Wu(吴鸿毅)");;函数
+(setq user-mail-address "wuhongyi@qq.com");;变量
+(setq user-url-address "http://wuhongyi.cn");;变量
+(add-hook 'after-init-hook (lambda ()
+(setq frame-title-format "%b - Hongyi Wu @ Peking University")))
 (add-to-list 'load-path "~/.emacs.d/plugins")
+(add-to-list 'load-path "~/.emacs.d/git-emacs")
+(add-to-list 'load-path "~/.emacs.d/lammps")
+(add-to-list 'load-path "/usr/local/MATLAB/R2012a/bin") ; matlab path
+(setq user-path-acdict "~/.emacs.d/plugins/ac-dict")
+(setq user-path-snippets "~/.emacs.d/snippets")
+;; ac-clang-flags是头文件的目录，根据系统的不同可能你的头文件目录也会不同，列出系统中所有的头文件目录方法是：
+;; $ echo "" | g++ -v -x c++ -E -  
+(setq user-path-ac-clang-include 
+      "  
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/x86_64-unknown-linux-gnu
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/backward
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include
+ /usr/local/include
+ /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include-fixed
+ /usr/include
+ /opt/root61206/include
+ /home/wuhongyi/CodeProject/inc
+ /home/wuhongyi/CodeProject/inc/wu_CLHEP
+ /home/wuhongyi/CodeProject/G4_inc
+ /home/wuhongyi/CodeProject/ROOT_inc
+ /opt/Geant4/geant41004p02/include/Geant4
+    ")
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;                            以下部分用户无需修改
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+;;markdown-mode
 (autoload 'markdown-mode "markdown-mode.el"
 "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
@@ -54,14 +94,15 @@
 ;; )
 ;; (my-fullscreen)
 
-
+;;CUA矩形块操作
+(cua-mode 1)
 ;;显示匹配的括号
 (show-paren-mode t) 
 ;;光标显示为一竖线
 (setq-default cursor-type 'bar)
 ;;鼠标指针避光标
-;(mouse-avoidance-mode 'animate)
-;(mouse-avoidance-mode 'cat-and-mouse)
+;; (mouse-avoidance-mode 'animate)
+;; (mouse-avoidance-mode 'cat-and-mouse)
 ;;开启语法高亮。
 (global-font-lock-mode 1)
 ;;高亮显示区域选择
@@ -78,7 +119,7 @@
 ;; 自动的在文件末增加一新行
 (setq require-final-newline t)
 ;; 当光标在行尾上下移动的时候，始终保持在行尾。
-;(setq track-eol t);这个会导致tab失效
+;; (setq track-eol t);这个会导致tab失效
 (auto-image-file-mode t) ;让Emacs可以直接打开、显示图片
 (tool-bar-mode 0);默认隐藏工具栏
 ;; 去掉滚动条
@@ -111,9 +152,8 @@
 
 
 ;;color
-(add-to-list 'load-path "~/.emacs.d/plugins")
 (require 'color-theme)
-;(color-theme-initialize)
+(color-theme-initialize)
 ;;(color-theme-subtle-hacker)
 ;;(color-theme-xemacs)
 ;;(color-theme-wheat)
@@ -161,7 +201,6 @@
 
 
 ;;显示行数
-(add-to-list 'load-path "~/.emacs.d/plugins")
 (require 'linum)    
 ;;; show line numbers in buffer  
 ;;; run M-x linum-mode    
@@ -173,14 +212,12 @@
 
 
 ;;自动补全
-(add-to-list 'load-path "~/.emacs.d/plugins")
 (require 'auto-complete)
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/plugins/ac-dict")
+(add-to-list 'ac-dictionary-directories user-path-acdict)
 (ac-config-default)
-;; ac-clang-flags是头文件的目录，根据系统的不同可能你的头文件目录也会不同，列出系统中所有的头文件目录方法是：
-;; $ echo "" | g++ -v -x c++ -E -  
-(add-to-list 'load-path "~/.emacs.d/plugins")
+
+
 (require 'auto-complete-clang) 
 ;; (setq ac-clang-auto-save t) 
 (setq ac-auto-start t);;nil  t
@@ -191,21 +228,8 @@
   (setq ac-clang-flags  
 	(mapcar(lambda (item)(concat "-I" item))  
 	       (split-string  
-		"  
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/x86_64-unknown-linux-gnu
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/../../../../include/c++/4.9.4/backward
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include
- /usr/local/include
- /usr/lib/gcc/x86_64-unknown-linux-gnu/4.9.4/include-fixed
- /usr/include
- /opt/root60806/include
- /home/wuhongyi/CodeProject/inc
- /home/wuhongyi/CodeProject/inc/wu_CLHEP
- /home/wuhongyi/CodeProject/G4_inc
- /home/wuhongyi/CodeProject/ROOT_inc
- /opt/Geant4/geant41003p01/include/Geant4
-    "))) 
+		user-path-ac-clang-include
+		))) 
   (setq-default ac-sources '(ac-source-abbrev ac-source-dictionary ac-source-words-in-same-mode-buffers))
   (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
   ;;(add-hook 'c-mode-common-hook 'ac-cc-mode-setup)
@@ -222,18 +246,20 @@
 ;;------------------------------------------------------------------------------
 
 ;;模板调用
-(add-to-list 'load-path "~/.emacs.d/plugins") 
-(require 'yasnippet)
-(yas/load-directory "~/.emacs.d/snippets")
-(yas-global-mode 1)
+(require 'yasnippet-bundle) 
+(setq yas/root-directory user-path-snippets)
+(yas/load-directory yas/root-directory)
+;; (require 'yasnippet)
+;; (yas/load-directory user-path-snippets)
+;; (yas-global-mode 1)
 ;; (yas-reload-all)
 ;; (add-hook 'vhdl-mode-hook 'yas-minor-mode)
-;(add-hook 'c++-mode-hook 'yas-minor-mode)
+;; (add-hook 'c++-mode-hook 'yas-minor-mode)
 ;; (add-hook 'verilog-mode-hook 'yas-minor-mode)
 
 
 
-(add-to-list 'load-path "~/.emacs.d/plugins")
+
 ;;加载header2.el文件,自动添加文件头
 (require 'header2)
 (autoload 'auto-update-file-header "header2")
@@ -257,8 +283,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;  
 ;;set matlab-emacs environment   
-(add-to-list 'load-path "~/.emacs.d/plugins")   ;matlab.el path  
-(add-to-list 'load-path "/usr/local/MATLAB/R2012a/bin") ; matlab path  
 (require 'matlab-load)  
 (autoload 'run-octave "octave-inf" nil t)                         ;special  
 (autoload 'matlab-mode "matlab" "Enter MATLAB mode." t)  
@@ -286,7 +310,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/plugins")   ;root-help.el path  
 (require 'root-help)
 ;; (defun root-c++-mode-hook ()
 ;;   "Hook for C++ mode - binding ROOT functions"
@@ -345,12 +368,3 @@
 
 ;;为了加快启动速度，配置放在以下文件夹
 (load "wu.el")
-
-
-;; VERSION
-;; https://github.com/auto-complete
-;;20180629 UPDATE yasnippet.el  0.6.1c -> 0.13.0
-;;20180630 UPDATE auto-complete.el 1.3.1 -> 1.5.1
-;;20180630 UPDATE fuzzy.el -> 0.2
-;;20180630 UPDATE popup.el 0.4 -> 0.5.3
-;;20180630 修改 auto-complete-config.el 扩展自动补全

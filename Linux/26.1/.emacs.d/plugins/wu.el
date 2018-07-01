@@ -4,9 +4,9 @@
 ;; Author: Hongyi Wu(吴鸿毅)
 ;; Email: wuhongyi@qq.com 
 ;; Created: 二 12月  9 13:37:24 2014 (+0800)
-;; Last-Updated: 三 6月 14 15:53:19 2017 (+0800)
+;; Last-Updated: 日 7月  1 10:54:05 2018 (+0800)
 ;;           By: Hongyi Wu(吴鸿毅)
-;;     Update #: 144
+;;     Update #: 159
 ;; URL: http://wuhongyi.cn 
 
 
@@ -161,12 +161,11 @@
 ;;(global-set-key [f4] 'gdb-many-windows);gdb-many-windows快捷键[F4]
 ;;(setq gdb-use-separate-io-buffer t) ; 不需要"IO buffer"时，则设为nil
 
-(add-to-list 'load-path "~/.emacs.d/lammps")
-(load-file "~/.emacs.d/lammps/lammps.el")
 
+
+(load-library "lammps.el")
 
 ;;git-emacs;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/git-emacs")
 (require 'git-emacs)
 (global-set-key [f4] 'git-status);
 
@@ -179,9 +178,9 @@
 
 
 ;;cmake;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(add-to-list 'load-path "~/.emacs.d/plugins")
-(load-file "~/.emacs.d/plugins/cmake-mode.el")
 (require 'cmake-mode)
+
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
