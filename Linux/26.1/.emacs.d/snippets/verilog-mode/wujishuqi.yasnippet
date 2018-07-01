@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: wujishuqi
+# key: wujishuqi
+# --
+always @(posedge clk or negedge rst_n) begin
+   if(!rst_n) begin
+      cnt <= 0;
+   end
+   else if(add_cnt) begin
+      if(end_cnt)
+	cnt <= 0;
+      else
+	cnt <= cnt + 1;
+   end
+end
+
+assign add_cnt = ;//加1条件
+assign end_cnt = add_cnt && cnt == ; //结束条件、尾值
+$0
