@@ -1,16 +1,16 @@
 # EmacsSet
 Hongyi Wu(吴鸿毅) emacs setting
 
-**当前最新版本 26.1**
+**当前最新版本 26.1** Linux下请使用使用 26.1 ，windows下请使用 25.2
 
-## emacs 25.2
+## emacs 26.1
 
 **Linux**
 
-安装最新25.2版本emacs请下载并执行脚本[autoinstallemacs](https://github.com/wuhongyi/BasicConfiguration/blob/master/autosetSL7/autoinstallemacs.sh)
+安装最新*26.1*版本emacs请下载并执行脚本[autoinstallemacs](https://github.com/wuhongyi/BasicConfiguration/blob/master/autosetSL7/autoinstallemacs.sh)
 
 
-需要修改 *.emacs* 、 *.emacs.d/plugins/header2.el* 两个文件。其中，.emacs文件修改个人信息设置部分以及自动补全功能搜索路径部分。
+需要修改 *.emacs* 文件。其中，*.emacs*文件修改个人信息设置部分以及自动补全功能搜索路径部分。
 
 在终端输入
 ```bash
@@ -41,7 +41,6 @@ echo "" | g++ -v -x c++ -E -
  /opt/Geant4/geant41003p01/include/Geant4
 ```
 
-修改 .emacs.d/plugins/header2.el 文件， 第425行为个人网址，如果没有则给注释掉，如果有则修改689行为自己的网址。
 
 
 快捷键配置如下：  
@@ -67,15 +66,15 @@ windows版本请到 http://ftp.gnu.org/gnu/emacs/windows/ 下载。解压缩之�
 
 配置文件可放在默认位置 c:/Users/yourname/AppData/Roaming  
 
-emacs 25.2在windows下很卡，需要重新配置下字体。打开菜单Options -> Set Default Font，更改字体字号等。然后再回到Options菜单，点击 Save Options。后面这一步务必操作，否则没有保存配置。
+emacs 25.2 在windows下很卡，需要重新配置下字体。打开菜单Options -> Set Default Font，更改字体字号等。然后再回到Options菜单，点击 Save Options。后面这一步务必操作，否则没有保存配置。
 
-
+emacs 26.1 还未测试。
 
 ----
 
-## emacs 24.5
+## emacs 手动安装
 
-emacs24.3、emacs24.4与我的.emacs配置有冲突（开多窗口失效），所以自己安装最新24.5版本（暂时还没发现没法修复的bug）。
+emacs24.3/24.4与我的.emacs配置有冲突（开多窗口失效），所以自己安装新版本24.5/25.2/26.1版本（暂时还没发现没法修复的bug）。
 
 依赖的库：
 
@@ -87,8 +86,8 @@ yum install giflib-devel.x86_64  giflib-utils.x86_64
 
 
 ```bash
-$ tar -zxvf emacs-24.5.tar.gz
-$ cd emacs-24.5
+$ tar -zxvf emacs-26.1.tar.gz
+$ cd emacs-26.1
 $ ./configure --prefix=/usr
 $ make -j4
 make install
