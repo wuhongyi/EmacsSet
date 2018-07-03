@@ -77,13 +77,19 @@
 
 
 ;; For my language code setting (UTF-8)
-(setq current-language-environment "UTF-8")
-(setq default-input-method "chinese-py")
-(setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(set-selection-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(set-default buffer-file-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(setq-default pathname-coding-system 'euc-cn)
+(setq file-name-coding-system 'euc-cn)
+(prefer-coding-system 'cp950)
+(prefer-coding-system 'gb2312)
+(prefer-coding-system 'cp936)
+(prefer-coding-system 'utf-16)
 (prefer-coding-system 'utf-8)
+(prefer-coding-system 'utf-8-dos)
+(prefer-coding-system 'utf-8-unix)
+
 
 ;; 实现全屏效果
 ;; (defun my-fullscreen ()
@@ -241,7 +247,7 @@
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags
-(my-ac-config)
+(my-ac-config);;windows下注释该行
 
 ;;------------------------------------------------------------------------------
 

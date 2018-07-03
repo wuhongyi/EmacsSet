@@ -1,7 +1,7 @@
 # EmacsSet
 Hongyi Wu(吴鸿毅) emacs setting
 
-**当前最新版本 26.1** Linux下请使用使用 26.1 ，windows下请使用 25.2
+**当前最新版本 26.1** Linux下请使用使用 26.1 ，windows下请使用 26.1
 
 ## emacs 26.1
 
@@ -68,7 +68,7 @@ windows版本请到 http://ftp.gnu.org/gnu/emacs/windows/ 下载。解压缩之�
 
 emacs 25.2 在windows下很卡，需要重新配置下字体。打开菜单Options -> Set Default Font，更改字体字号等。然后再回到Options菜单，点击 Save Options。后面这一步务必操作，否则没有保存配置。
 
-emacs 26.1 还未测试。
+emacs 26.1 同样存在很卡的问题，网上有说更改字体配置的，有说将系统语言设置成中文的。
 
 ----
 
