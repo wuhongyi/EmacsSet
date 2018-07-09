@@ -4,23 +4,26 @@
 # --
 module ${1:ModuleName}
   (
-   // output ,
-   input clk,
-   input rst_n
+   // dout ,
+   clk,
+   rst_n
    );
    $0
-   // parameter = ;
+   // parameter DATA_W = 8;
+   // output[DATA_W-1:0]  dout;
+   // reg   [DATA_W-1:0]  dout;
 
-   // wire ;//Internal signal declaration                 
+
+   input clk;
+   input rst_n;
+   // wire ;                 
    // reg ;
-
    //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-   // Continuous assignment
    // assign  = ;
 
-
-   //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
+   // --- --- ---
+   
    // always 
    always@(*)begin
    
@@ -36,8 +39,5 @@ module ${1:ModuleName}
 	 
       end
    end
-
-   //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
-   // Module h instantiation
 
 endmodule

@@ -32,10 +32,8 @@ always @(*)begin
         end
      end
      S2:begin
-        if(s22idl)begin
-	// if(s22s3_start)begin
-           state_n = IDLE;
-	   // state_n = S3;
+        if(s22s3_start)begin
+	   state_n = S3;
         end
         else begin
            state_n = state_c;
@@ -47,19 +45,17 @@ always @(*)begin
    endcase
 end
 
-
 // Third: uses assign to define the transition conditions
 assign idle2s1_start = state_c==IDLE && ;
 assign s12s2_start  = state_c==S1   && ;
-assign s22idl_start  = state_c==S2   && ;
-// assign s22s3_start  = state_c==S2    && ;
+assign s22s3_start  = state_c==S2    && ;
 
 
 // Fourth: design output signal
 always  @(posedge clk or negedge rst_n)begin
    if(!rst_n)begin
-      out1 <=1'b0  
-	     end
+      out1 <=1'b0;  
+   end
    else if(state_c==S1)begin
       out1 <= 1'b1;
    end
