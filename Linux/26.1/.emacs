@@ -68,11 +68,11 @@
 (autoload 'markdown-mode "markdown-mode.el"
 "Major mode for editing Markdown files" t)
 (setq auto-mode-alist
-(cons '(".markdown" . markdown-mode) auto-mode-alist))
+(cons '(".markdown\\'" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist
-(cons '(".md" . markdown-mode) auto-mode-alist))
+(cons '(".md\\'" . markdown-mode) auto-mode-alist))
 (setq auto-mode-alist
-(cons '(".ejs" . markdown-mode) auto-mode-alist))
+(cons '(".ejs\\'" . markdown-mode) auto-mode-alist))
 
 
 
@@ -357,14 +357,28 @@
 
 
 (setq auto-mode-alist
+(cons '(".h\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".hh\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".hpp\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".C\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".cc\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".cpp\\'" . c++-mode) auto-mode-alist))
+
+
+(setq auto-mode-alist
 (cons '(".mqh" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist
 (cons '(".mq5" . c++-mode) auto-mode-alist))
 
 (setq auto-mode-alist
-(cons '(".v" . verilog-mode) auto-mode-alist))
+(cons '(".v\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist
-(cons '(".vhd" . vhdl-mode) auto-mode-alist))
+(cons '(".vhd\\'" . vhdl-mode) auto-mode-alist))
 
 ;;为了加快启动速度，配置放在以下文件夹
 (load "wu.el")

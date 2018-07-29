@@ -237,7 +237,7 @@
   (setq ac-sources (append '(ac-source-clang ac-source-yasnippet) ac-sources)))
 (add-hook 'c-mode-common-hook 'my-ac-cc-mode-setup)
 ;; ac-source-gtags
-(my-ac-config);;windows下注释该行
+;;(my-ac-config);;windows下注释该行
 
 ;;------------------------------------------------------------------------------
 
@@ -355,11 +355,29 @@
 ;; M-x compile or C-c c, after that M-x next-error will also work.
 ;; There is support for viewing an generated image with C-c p.
 
+(setq auto-mode-alist
+(cons '(".h\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".hh\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".hpp\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".C\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".cc\\'" . c++-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".cpp\\'" . c++-mode) auto-mode-alist))
+
 
 (setq auto-mode-alist
 (cons '(".mqh" . c++-mode) auto-mode-alist))
 (setq auto-mode-alist
 (cons '(".mq5" . c++-mode) auto-mode-alist))
+
+(setq auto-mode-alist
+(cons '(".v\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".vhd\\'" . vhdl-mode) auto-mode-alist))
 
 
 ;;为了加快启动速度，配置放在以下文件夹

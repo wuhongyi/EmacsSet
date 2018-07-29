@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# name: wutest
-# key: wutest
+# name: wutestbench
+# key: wutestbench
 # --
 `timescale 1 ns/1 ns
 
@@ -9,19 +9,14 @@ module ${1:testbench_name}();
    reg clk  ;
    reg rst_n;
 
-
+   // 模块输入变量类型定义为reg，输出变量类型定义为wire
    reg [3:0] din0  ;
    reg       din1  ;
-
 
    wire      dout0;
    wire [4:0] dout1;
 
-
-   parameter CYCLE    = 20;
-   parameter RST_TIME = 3 ;
-
-
+   // module_name#(.PAR(10)) 指定参数
    module_name uut(
 		   .clk          (clk     ), 
 		   .rst_n        (rst_n   ),
@@ -30,6 +25,12 @@ module ${1:testbench_name}();
 		   .dout0        (dout0   ),
 		   .dout1        (dout1   )
 		   );
+
+
+   parameter CYCLE    = 20;
+   parameter RST_TIME = 3 ;
+   // integer i;//for loop	      
+
 
    initial begin
       clk = 1;
@@ -53,10 +54,12 @@ module ${1:testbench_name}();
 
    end
 
-   initial begin
-      #1;
-      din1 = 0;
-      #(10*CYCLE);
 
-   end
+   // for(i=0;i<200;i=i+1)
+   //   begin
+   //      din = $random();
+   //      #(1*CYCLE);
+   //   end
+
+
 endmodule

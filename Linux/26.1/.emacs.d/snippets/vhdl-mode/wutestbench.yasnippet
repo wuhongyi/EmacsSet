@@ -1,0 +1,89 @@
+# -*- mode: snippet -*-
+# name: wutestbench
+# key: wutestbench
+# --
+library ieee;  
+use ieee.std_logic_1164.all;  
+use ieee.std_logic_unsigned.all;  
+use ieee.std_logic_unsigned.all;
+use ieee.math_real.all;
+use ieee.numeric_std.all;
+
+entity ${1:testbench_name} is --空实体,不需要端口定义  
+end ${1:$(yas/substr text "[^: ]*")};  
+
+architecture ${2:Behavioral} of ${1:$(yas/substr text "[^: ]*")} is
+  
+  --被测试元件的声明 
+  -- component led4  
+  --   port (
+  --     led :out std_logic_vector(3 downto 0);
+  --     clk : in std_logic;
+  --     rst_n : in std_logic 
+  --     );  
+  -- end component;
+  
+
+  -- 输入输出信号
+  signal clk : std_logic := '1';  
+  signal rst_n : std_logic := '1';
+  
+  -- signal led : std_logic_vector(3 downto 0);  
+
+
+  constant CYCLE :time   :=20 ns;--时钟周期的定义
+  constant RST_TIME : integer := 3; 
+begin
+
+  -- 端口连接
+  -- uut : led4 port map  
+  --   (  
+  --     led  =>  led,
+  --     clk  =>  clk,
+  --     rst_n=>  rst_n
+  --     );   
+  
+  process  --产生时钟信号 
+  begin  
+    clk <= '1';  
+    wait for CYCLE/2;  
+    clk <= '0';  
+    wait for CYCLE/2;  
+  end process; 
+
+  process       
+  begin
+    rst_n <= '1';
+    wait for CYCLE/10;
+    rst_n <= '0';
+    wait for CYCLE*RST_TIME;
+    rst_n <= '1';
+    wait;--will wait forever
+  end process;
+
+
+  --产生激励源  
+  process
+    -- VARIABLE seed1, seed2: positive; -- 缺省值为1
+    -- VARIABLE rand: real; -- 产生范围 0 到 1.0 的随机数
+    -- VARIABLE int_rand: integer range 0 to 255;  
+  begin
+    wait for CYCLE/10;
+    din <= 0;
+    wait for 10*CYCLE;--CYCLE*(RST_TIME+1)
+
+
+    -- for i in 0 to 24 loop
+    --   UNIFORM(seed1, seed2, rand);      
+    --   int_rand := INTEGER(TRUNC(rand*255.0));
+    --   din <= std_logic_vector(to_unsigned(int_rand, 8));
+    --   wait for 1*CYCLE;
+    -- end loop;
+
+
+    wait;
+  end process;
+
+
+  
+end ${2:$(yas/substr text "[^: ]*")}; 
