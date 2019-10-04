@@ -10,7 +10,7 @@ Hongyi Wu(吴鸿毅) emacs setting
 安装最新*26.1*版本emacs请下载并执行脚本[autoinstallemacs](https://github.com/wuhongyi/BasicConfiguration/blob/master/autosetSL7/autoinstallemacs.sh)
 
 
-需要修改 *.emacs* 文件。其中，*.emacs*文件修改个人信息设置部分以及自动补全功能搜索路径部分。
+需要修改 *.emacs* 文件。其中，*.emacs* 文件修改个人信息设置部分以及自动补全功能搜索路径部分。
 
 在终端输入
 ```bash

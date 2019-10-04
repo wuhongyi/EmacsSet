@@ -378,7 +378,19 @@
 (setq auto-mode-alist
 (cons '(".v\\'" . verilog-mode) auto-mode-alist))
 (setq auto-mode-alist
+(cons '(".vh\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".verilog\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".vlg\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".vt\\'" . verilog-mode) auto-mode-alist))
+(setq auto-mode-alist
 (cons '(".vhd\\'" . vhdl-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".vhdl\\'" . vhdl-mode) auto-mode-alist))
+(setq auto-mode-alist
+(cons '(".vht\\'" . vhdl-mode) auto-mode-alist))
 
 ;;为了加快启动速度，配置放在以下文件夹
 (load "wu.el")
