@@ -5,9 +5,10 @@
 library ieee;  
 use ieee.std_logic_1164.all;  
 use ieee.std_logic_unsigned.all;  
-use ieee.std_logic_unsigned.all;
 use ieee.math_real.all;
 use ieee.numeric_std.all;
+use ieee.std_logic_textio.all;
+use std.textio.all;
 
 entity ${1:testbench_name} is --空实体,不需要端口定义  
 end ${1:$(yas/substr text "[^: ]*")};  
@@ -23,6 +24,24 @@ architecture ${2:Behavioral} of ${1:$(yas/substr text "[^: ]*")} is
   --     );  
   -- end component;
   
+  -- component CHRONOSTARTSTOP
+  --   Generic (bitSize : integer := 1);
+  --   port (
+  --     RESET : IN STD_LOGIC;
+  --     CE : IN STD_LOGIC;
+  --     CLK : IN STD_LOGIC;
+  --     START : IN STD_LOGIC;
+  --     STOP : IN STD_LOGIC;
+  --     AUTORESET : IN STD_LOGIC;
+  --     TIMEMES: OUT STD_LOGIC_VECTOR (bitSize-1 downto 0);
+  --     OVERFLOW: OUT STD_LOGIC;
+  --     RUNNING: OUT STD_LOGIC
+  --     );
+  -- end component;      
+
+
+
+
 
   -- 输入输出信号
   signal clk : std_logic := '1';  
@@ -42,7 +61,22 @@ begin
   --     clk  =>  clk,
   --     rst_n=>  rst_n
   --     );   
-  
+
+  -- u1 : CHRONOSTARTSTOP generic map(bitSize => 4) port map
+  --   (
+  --     RESET => reset,
+  --     CE => ce,
+  --     CLK => clk,     
+  --     START =>  start,
+  --     STOP => stop,
+  --     AUTORESET => autoreset,
+  --     TIMEMES => timemes,
+  --     OVERFLOW => overflow,
+  --     RUNNING => running
+  --     );    
+
+
+
   process  --产生时钟信号 
   begin  
     clk <= '1';  
@@ -81,8 +115,49 @@ begin
     -- end loop;
 
 
-    wait;
+    wait;--will wait forever
   end process;
+
+
+  --读取/保存数据
+  -- f1:process(clk,rst_n)
+  --   file stim_a:text open read_mode is "stimu1.txt";
+  --   file stim_b:text open read_mode is "stimu2.txt";
+  --   file resp_out:text open write_mode is "resp_out.txt";
+
+  --   variable line_in_a:line;
+  --   variable line_in_b:line;
+  --   variable line_out:line;
+
+  --   variable a_tmp : integer;
+  --   variable b_tmp : integer;
+  --   variable rsp_tmp : integer;
+  -- begin
+  --   if rst_n='0' then
+  --     a <= (others => '0');
+  --     b <= (others => '0');
+  --   elsif clk'event and clk='1' then
+  --     if not(endfile(stim_a)) and not(endfile(stim_b)) then
+  --       readline(stim_a,line_in_a);
+  --       read(line_in_a,a_tmp);
+
+  --       readline(stim_b,line_in_b);
+  --       read(line_in_b,b_tmp);
+
+  --       a <= std_logic_vector(to_unsigned(a_tmp, 3));
+  --       b <= std_logic_vector(to_unsigned(b_tmp, 3));
+
+  --       rsp_tmp := to_integer(unsigned(y));
+        
+  --       write(line_out,rsp_tmp);
+  --       writeline(resp_out,line_out);
+  --     else
+  --       assert false
+  --         report "End of File!"
+  --         severity note;
+  --     end if;
+  --   end if;
+  -- end process f1;  
 
 
   
