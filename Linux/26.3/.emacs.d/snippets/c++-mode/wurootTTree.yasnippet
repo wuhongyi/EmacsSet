@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# name: wurootTTree
+# --
+TTree *${1:Name} = new TTree(${2:"TreeName"},"Hongyi Wu Data");
+// TTree *${1:$(yas/substr text "[^: ]*")} = (TTree*)rootfile->Get(${2:$(yas/substr text "[^: ]*")});
+$0
+// TTree *${1:$(yas/substr text "[^: ]*")}->SetDirectory(TDirectory* dir);// Change the tree's directory. Remove reference to this tree from current directory and add reference to new directory dir. The dir parameter can be 0 in which case the tree does not belong to any directory.
+// TTree *${1:$(yas/substr text "[^: ]*")}->SetMaxTreeSize(100000000000LL);//default size 100000000000LL, ie 100 Gigabytes.
+// TTree *${1:$(yas/substr text "[^: ]*")}->SetFileNumber(0);// Set fFileNumber to number.
+// TTree *${1:$(yas/substr text "[^: ]*")}->SetAutoSave(-300000000);// default size -300000000, ie 300 MBytes. When filling the Tree the branch buffers as well as the Tree header will be flushed to disk when the watermark is reached. If fAutoSave is positive the watermark is reached when a multiple of fAutoSave entries have been written. If fAutoSave is negative the watermark is reached when -fAutoSave bytes have been written to the file. In case of a program crash, it will be possible to recover the data in the Tree up to the last AutoSave point.
+// TTree *${1:$(yas/substr text "[^: ]*")}->SetAutoFlush(-30000000);// This function may be called at the start of a program to change the default value for fAutoFlush.
+// CASE 1 : autof > 0: autof is the number of consecutive entries after which TTree::Fill will flush all branch buffers to disk.
+// CASE 2 : autof < 0: When filling the Tree the branch buffers will be flushed to disk when more than autof bytes have been written to the file. At the first FlushBaskets TTree::Fill will replace fAutoFlush by the current value of fEntries.  Calling this function with autof<0 is interesting when it is hard to estimate the size of one entry. This value is also independent of the Tree.  The Tree is initialized with fAutoFlush=-30000000, ie that, by default, the first AutoFlush will be done when 30 MBytes of data are written to the file.
+// CASE 3 : autof = 0: The AutoFlush mechanism is disabled.
+
+
+
+
+// Branch / write
+// int ${3:mhit};
+// int ${4:hitdata}[1024];
+// ${1:$(yas/substr text "[^: ]*")}->Branch("${3:$(yas/substr text "[^: ]*")}",&${3:$(yas/substr text "[^: ]*")},"${3:$(yas/substr text "[^: ]*")}/I");
+// ${1:$(yas/substr text "[^: ]*")}->Branch("${4:$(yas/substr text "[^: ]*")}",&${4:$(yas/substr text "[^: ]*")},"${4:$(yas/substr text "[^: ]*")}[${3:$(yas/substr text "[^: ]*")}]/I");
+
+// file = ${1:$(yas/substr text "[^: ]*")}->GetCurrentFile();
+${1:$(yas/substr text "[^: ]*")}->Fill();//loop
+// ${1:$(yas/substr text "[^: ]*")}->Write();
+
+// ${1:$(yas/substr text "[^: ]*")}->GetEntries();//获取entry数
+// ${1:$(yas/substr text "[^: ]*")}->Print("");// "all" friend trees are also printed. "toponly" only the top level branches are printed. "clusters" information about the cluster of baskets is printed.    T.Print("xxx*") will print all branches with name starting with "xxx".
+
+// Branch / read
+// Event *event = 0;  //event must be null or point to a valid object it must be initialized
+// ${1:$(yas/substr text "[^: ]*")}->SetBranchAddress("event",&event);
+// ${1:$(yas/substr text "[^: ]*")}->GetEntry( /*int*/);
